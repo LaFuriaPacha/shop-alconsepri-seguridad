@@ -14,9 +14,7 @@ import { ProductService } from 'src/app/product.service';
 })
 export class ProductFormComponent {
   categories$;
-  product = {
-
-  };
+  product = null ;
 
   constructor(
     private router: Router,
@@ -26,10 +24,8 @@ export class ProductFormComponent {
     this.categories$ = categoryService.getCategories();
 
     let id = this.route.snapshot.paramMap.get('id');
-    if (id) this.productService.get(id).pipe(take(1)).subscribe(p => {
-      this.product = p;
-      console.log(this.product)
-    });
+    if (id) this.productService.get(id).pipe(take(1)).subscribe(p =>
+      this.product = p);
   }
 
   save(product){
